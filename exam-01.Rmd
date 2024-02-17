@@ -1,7 +1,7 @@
 ---
 title: "Take Home Exam #1"
-author: "Adam J Sullivan"
-date: "February 24, 2024"
+author: "Evan Kurtz"
+date: "February 17, 2024"
 output: html_document
 ---
 
@@ -45,7 +45,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Academic Integrity Statement
 
-*I, \_\_\_\_\_\_\_\_\_\_\_\_, hereby state that I have not communicated with or gained information in any way from my classmates or anyone other than the Professor or TA during this exam, and that all work is my own.*
+*I, Evan Kurtz, hereby state that I have not communicated with or gained information in any way from my classmates or anyone other than the Professor or TA during this exam, and that all work is my own.*
 
 **A note on sharing / reusing code:** I am well aware that a huge volume of code is available on the web to solve any number of problems.
 For this exam you are allowed to make use of any online resources (e.g. StackOverflow) but you must explicitly cite where you obtained any code you directly use (or use as inspiration).
@@ -94,10 +94,24 @@ The main data is in the `flights` data frame, but there are additional data sets
 -   `airports`: airport names and locations
 -   `airlines`: translation between two letter carrier codes and names
 
+```{r}
+library(tidyverse)
+library(nycflights13)
+```
+
 ## Questions
 
 1.  **Question 1 (10 points)** - What are the ten most common destinations for flights from NYC airports in 2013?
     Make a table that lists these in descending order of frequency and shows the number of fligts heading to each airport.
+    
+```{r message = TRUE}
+flights %>%
+  count(dest) %>%
+  arrange(desc(n)) %>%
+  slice(1:10)
+```
+   
+    
 
 2.  **Question 2 (10 points)** - Which airlines have the most flights departing from NYC airports in 2013?
     Make a table that lists these in descending order of frequency and shows the number of flights for each airline.
