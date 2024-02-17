@@ -109,14 +109,24 @@ flights %>%
   count(dest) %>%
   arrange(desc(n)) %>%
   slice(1:10)
+#I accessed the "flights" data frame, found the frequency of each destination with "count", arranged the results with "arrange", and displayed just the top 10 results with "slice."
 ```
-   
-    
 
+   
 2.  **Question 2 (10 points)** - Which airlines have the most flights departing from NYC airports in 2013?
     Make a table that lists these in descending order of frequency and shows the number of flights for each airline.
     In your narrative mention the names of the airlines as well.
     *Hint:* You can use the `airlines` dataset to look up the airline name based on `carrier` code.
+
+```{r message = TRUE}
+flights %>%
+  count(carrier) %>%
+  arrange(desc(n))
+#I used the same approach as the last question but I showed all 16 results.
+```
+
+***The top 5 most popular airlines are as follows: 1. United Airlines (58665 flights) 2. Jet Blue (54635 flights) 3. EVA Air (54173 flights) 4. Delta Air Lines (48110 flights) 5. American Airlines (32729 flights)***
+
 
 3.  **Question 3 (10 points)** - Consider only flights that have non-missing arrival delay information.
     Your answer should include the name of the carrier in addition to the carrier code and the values asked.
