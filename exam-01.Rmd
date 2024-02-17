@@ -159,9 +159,17 @@ flights_delayed <- flights %>%
 4.  **Question 4 (10 points)** - What was the mean temperature at the origin airport on the day with the highest departure delay?
     Your answer should include the name of origin airport, the date with the highest departure delay, and the mean temperature on that day.
     
+```{r}
+weather %>%
+  group_by(origin) %>%
+  summarise(mean_temp = mean(temp))
+```
     
 
+
 5.  **Question 5 (15 points)** - Consider breaking the day into four time intervals: 12:01am-6am, 6:01am-12pm, 12:01pm-6pm, 6:01pm-12am.
+
+
 
     a\.
     Calculate the proportion of flights that are delayed at departure at each of these time intervals.
@@ -171,14 +179,40 @@ flights_delayed <- flights %>%
 
 6.  **Question 6 (15 points)** - Find the flight with the longest air time.
 
+```{r}
+flights %>%
+  select(air_time) %>%
+  arrange(desc(air_time))
+#Looking in the flights data set, I only "select" the air_time variable and then "arrange" the air time variable from greatest to least with "desc". 
+```
+
+
     a\.
     How long is this flight?
+***Using the code chunk above, it appears that the longest flight was 695    minutes or about 11.5 hours (695/60) using a calculator.***
 
     b\.
-    What city did it fly to?
+    What city did it fly to? 
+    
+```{r}
+flights %>%
+  select(air_time, dest) %>%
+  arrange(desc(air_time))
+#I used the same code as "a." but I selected the destination variable as well.
+```
+***Using Google to search which airport has the code HNL, it appears the longest flight flew to the city of Honolulu, Hawaii.***
 
     c\.
     How many seats does the plane that flew this flight have?
+    
+```{r}
+flights %>% 
+  left_join(planes) %>%
+  select(air_time, tailnum, seats, dest) %>%
+  arrange(desc(air_time)) %>%
+  slice(1:1)
+```
+***I couldn't figure out how to find seats with the join function but I found out the tail number of the plane that flew the longest flight of 11.5 hours. It is N77066. I found the number of seats by searching that tail number in the "planes" data set and found that it has 292 seats.***
 
 7.  **Question 7 (15 pts)** - The `airports` data frame contains information on a large number of primarily American airports.
     These data include location information for these airports in the form of latitude and longitude coordinates.
