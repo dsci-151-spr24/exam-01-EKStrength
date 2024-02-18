@@ -173,6 +173,18 @@ flights %>%
 
 5.  **Question 5 (15 points)** - Consider breaking the day into four time intervals: 12:01am-6am, 6:01am-12pm, 12:01pm-6pm, 6:01pm-12am.
 
+```{r}
+time_interval_1 <- hour 
+time_interval_2 <- hour
+time_interval_3 <- hour
+time_interval_4 <- hour
+
+time_interval_1 = (1-6)
+time_interval_2 = (7-12)
+time_interval_3 = (13-18)
+time_interval_4 = (19-24)
+
+```
 
 
     a\.
